@@ -1,5 +1,6 @@
 #include <iostream>
 #include "book.h"
+#include <sstream> //
 
 using namespace std;
 
@@ -37,9 +38,7 @@ void Book::returnBook()
 }
 
 
-
-
-// Format pour le storage fichier
+// Export format pour le storage fichier
 string Book::toFileFormat() const
 {
     string available = "0";
@@ -50,6 +49,44 @@ string Book::toFileFormat() const
     }
 
     string book = title + "|" + author + "|" + isbn + "|" + available + "|" + borrowerId;
+
+    return book;
+}
+
+// Import les informations d'un livre d'un format fichier
+void Book::fromFileFormat(const string &line)
+{
+    stringstream ss(line);
+    string available;
+
+    getline(ss, title, '|');
+    getline(ss, author, '|');
+    getline(ss, isbn, '|');
+    getline(ss, available, '|');
+    getline(ss, borrowerId, '|');
+
+    if (available == "0")
+    {
+        isAvailable = false;
+    }
+    else
+    {
+        isAvailable = true;
+    }
+}
+
+// Information d'un livre
+string Book::toString() const
+{
+
+    string available = "available";
+
+    if (isAvailable == true)
+    {
+        available  = "Disponible";
+    }
+
+    string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + borrowerId;
 
     return book;
 }
