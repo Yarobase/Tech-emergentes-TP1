@@ -121,3 +121,22 @@ void FileManager::createBackup() {
     
     cout << "Fichiers de sauvegarde créés.\n";
 }
+
+void FileManager::sauvgarderEvenementJournal(const string &evenement, const string &description)
+{
+    filesystem::path path = filesystem::path(booksFileName).parent_path() / "journal.txt";
+
+    ofstream file(path, ios::app);
+
+    if (file.is_open())
+    {
+        time_t presentTime = time(nullptr);
+        tm *dateTime = localtime(&presentTime);
+
+        file << put_time(dateTime, "%Y-%m-%d %H:%M:%S") << " - [" << evenement << "] " << description << "\n";
+    }
+    else
+    {
+        cout << "Erreur, l'écriture dans le journal à échouer : " << path << "\n";
+    }
+}
