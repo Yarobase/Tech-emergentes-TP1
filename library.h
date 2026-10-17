@@ -39,9 +39,11 @@ public:
     
     // Display methods
     void displayAllBooks();
+    void displayAllBooksName();
     void displayAvailableBooks();
+    void displayAvailableBooksName(); 
     void displayAllUsers();
-    
+
     // Statistics
     int getTotalBooks() const;
     int getAvailableBookCount() const;

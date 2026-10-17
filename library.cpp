@@ -161,6 +161,24 @@ void Library::displayAllBooks() {
     }
 }
 
+// Display all books with name
+void Library::displayAllBooksName()
+{
+    if (books.empty())
+    {
+        cout << "Aucun livre dans la bibliothèque.\n";
+        return;
+    }
+
+    cout << "\n=== TOUS LES LIVRES ===\n";
+    for (size_t i = 0; i < books.size(); ++i)
+    {
+        cout << "\nLivre " << (i + 1) << " :\n";
+        cout << books[i]->toStringName() << "\n";
+        cout << "-------------------------\n";
+    }
+}
+
 // Display available books
 void Library::displayAvailableBooks() {
     auto available = getAvailableBooks();
@@ -174,6 +192,26 @@ void Library::displayAvailableBooks() {
     for (size_t i = 0; i < available.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
         cout << available[i]->toString() << "\n";
+        cout << "---------------------------\n";
+    }
+}
+
+// Display available books with name
+void Library::displayAvailableBooksName()
+{
+    auto available = getAvailableBooks();
+
+    if (available.empty())
+    {
+        cout << "Aucun livre disponible pour emprunt.\n";
+        return;
+    }
+
+    cout << "\n=== LIVRES DISPONIBLES ===\n";
+    for (size_t i = 0; i < available.size(); ++i)
+    {
+        cout << "\nLivre " << (i + 1) << " :\n";
+        cout << available[i]->toStringName() << "\n";
         cout << "---------------------------\n";
     }
 }

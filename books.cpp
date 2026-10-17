@@ -1,8 +1,13 @@
 #include <iostream>
 #include "book.h"
-#include <sstream> //
+#include <sstream>
+
+#include "library.h"
+#include "user.h"
 
 using namespace std;
+
+Library library;
 
 Book::Book() : title(""), author(""), isbn(""), isAvailable(true), borrowerId("") {}
 
@@ -87,6 +92,32 @@ string Book::toString() const
     }
 
     string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + borrowerId;
+
+    return book;
+}
+
+// Information d'un livre avec nom
+string Book::toStringName() const
+{
+
+    string available = "available";
+    User* user = library.findUserById(borrowerId);
+    string name;
+    if (user != nullptr)
+    {
+        name = user->getName();
+    }
+    else
+    {
+        name = "Utilisateur inconnu";
+    }
+
+    if (isAvailable == true)
+    {
+        available = "Disponible";
+    }
+
+    string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + name;
 
     return book;
 }

@@ -89,6 +89,7 @@ int main(int argc, char* argv[]) {
     
     int choice;
     bool running = true;
+    string display;
     
     while (running) {
         displayMenu();
@@ -168,13 +169,46 @@ int main(int argc, char* argv[]) {
             }
             
             case 5: // Display All Books
-                library.displayAllBooks();
-                pauseForInput();
+                cout << "i pour l'affichage avec ID \nn pour l'affichage avec nom\n";
+                display = getInput("Entrez le mode d'affichage : ");
+
+                if (display == "i")
+                {
+                    library.displayAllBooks();
+                    pauseForInput();
+                }
+                else if (display == "n")
+                {
+                    library.displayAllBooksName();
+                    pauseForInput();
+                }
+                else
+                {
+                    cout << "Mode d'affichage invalide.\n";
+                    pauseForInput();
+                }
+
                 break;
             
             case 6: // Display Available Books
-                library.displayAvailableBooks();
-                pauseForInput();
+                cout << "i pour l'affichage avec ID \nn pour l'affichage avec nom\n";
+                display = getInput("Entrez le mode d'affichage : ");
+                if (display == "i")
+                {
+                    library.displayAvailableBooks();
+                    pauseForInput();
+                }
+                else if (display == "n")
+                {
+                    library.displayAvailableBooksName();
+                    pauseForInput();
+                }
+                else
+                {
+                    cout << "Mode d'affichage invalide.\n";
+                    pauseForInput();
+                }
+
                 break;
             
             case 7: { // Add User
