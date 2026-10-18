@@ -43,11 +43,11 @@ void Book::returnBook()
 // Export format pour le storage fichier
 string Book::toFileFormat() const
 {
-    string available = "0";
+    string available = "1";
 
-    if (isAvailable == true)
+    if (isAvailable != true)
     {
-        available = "1";
+        available = "0";
     }
 
     string book = title + "|" + author + "|" + isbn + "|" + available + "|" + borrowerId;
