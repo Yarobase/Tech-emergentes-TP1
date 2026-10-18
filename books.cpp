@@ -2,12 +2,10 @@
 #include "book.h"
 #include <sstream>
 
-#include "library.h"
 #include "user.h"
 
 using namespace std;
 
-Library library;
 
 Book::Book() : title(""), author(""), isbn(""), isAvailable(true), borrowerId("") {}
 
@@ -83,24 +81,30 @@ void Book::fromFileFormat(const string &line)
 string Book::toString() const
 {
 
-    string available = "available";
+    string available = "Non disponible";
+    string borrower = borrowerId;
 
     if (isAvailable == true)
     {
         available = "Disponible";
     }
 
-    string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + borrowerId;
+    if (borrower == "")
+    {
+        borrower = "Personne";
+    }
+    
+
+    string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + borrower;
 
     return book;
 }
 
 // Information d'un livre avec nom
-string Book::toStringName() const
+string Book::toStringName(const string &borrowerName) const
 {
 
-    string available = "available";
-    User *user = library.findUserById(borrowerId);
+    string available = "Non disponible";
     string name;
 
     if (isAvailable)
@@ -112,11 +116,10 @@ string Book::toStringName() const
     {
         available = "Emprunté";
 
-        User *user = library.findUserById(borrowerId);
 
-        if (user != nullptr)
+        if (borrowerName != "")
         {
-            name = user->getName();
+            name = borrowerName;
         }
         else
         {

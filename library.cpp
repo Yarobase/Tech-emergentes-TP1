@@ -173,8 +173,15 @@ void Library::displayAllBooksName()
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < books.size(); ++i)
     {
+        string borrowerName = "";
+        User *user = findUserById(books[i]->getBorrowerId());
+
+        if (user != nullptr)
+        {
+            borrowerName = user->getName();
+        }
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << books[i]->toStringName() << "\n";
+        cout << books[i]->toStringName(borrowerName) << "\n";
         cout << "-------------------------\n";
     }
 }
@@ -210,8 +217,15 @@ void Library::displayAvailableBooksName()
     cout << "\n=== LIVRES DISPONIBLES ===\n";
     for (size_t i = 0; i < available.size(); ++i)
     {
+        string borrowerName = "";
+        User *user = findUserById(available[i]->getBorrowerId());
+
+        if (user != nullptr)
+        {
+            borrowerName = user->getName();
+        }
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << available[i]->toStringName() << "\n";
+        cout << available[i]->toStringName(borrowerName) << "\n";
         cout << "---------------------------\n";
     }
 }
