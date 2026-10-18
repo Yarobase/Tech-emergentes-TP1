@@ -14,7 +14,7 @@ Book::Book() : title(""), author(""), isbn(""), isAvailable(true), borrowerId(""
 Book::Book(const string &title, const string &author, const string &isbn)
     : title(title), author(author), isbn(isbn) {}
 
-string Book::getTitle() const {return title;}
+string Book::getTitle() const { return title; }
 string Book::getAuthor() const { return author; }
 string Book::getISBN() const { return isbn; }
 bool Book::getAvailability() const { return isAvailable; }
@@ -41,7 +41,6 @@ void Book::returnBook()
     setAvailability(true);
     setBorrowerId("");
 }
-
 
 // Export format pour le storage fichier
 string Book::toFileFormat() const
@@ -88,7 +87,7 @@ string Book::toString() const
 
     if (isAvailable == true)
     {
-        available  = "Disponible";
+        available = "Disponible";
     }
 
     string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + borrowerId;
@@ -101,23 +100,30 @@ string Book::toStringName() const
 {
 
     string available = "available";
-    User* user = library.findUserById(borrowerId);
+    User *user = library.findUserById(borrowerId);
     string name;
-    if (user != nullptr)
+
+    if (isAvailable)
     {
-        name = user->getName();
+        available = "Disponible";
+        name = "Aucun emprunteur";
     }
     else
     {
-        name = "Utilisateur inconnu";
+        available = "Emprunté";
+
+        User *user = library.findUserById(borrowerId);
+
+        if (user != nullptr)
+        {
+            name = user->getName();
+        }
+        else
+        {
+            name = "Utilisateur inconnu";
+        }
     }
+        string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + name;
 
-    if (isAvailable == true)
-    {
-        available = "Disponible";
+        return book;
     }
-
-    string book = "Titre: " + title + "\nAuteur: " + author + "\nISBN: " + isbn + "\nDisponibilité: " + available + "\nEmprunté par : " + name;
-
-    return book;
-}
