@@ -175,14 +175,34 @@ bool Library::returnBook(const string &isbn)
 }
 
 // Display all books
-void Library::displayAllBooks()
+void Library::displayAllBooks(const string &filter)
 {
     if (books.empty())
     {
         cout << "Aucun livre dans la bibliothèque.\n";
         return;
     }
-
+    if (filter == "t")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getTitle() < b->getTitle();
+             });
+    }
+    else if (filter == "a")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getAuthor() < b->getAuthor();
+             });
+    }
+    else
+    {
+        cout << "Filtre invalide. Utilisez 't' pour le titre "
+             << "ou 'a' pour l'auteur.\n";
+    }
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < books.size(); ++i)
     {
@@ -193,7 +213,7 @@ void Library::displayAllBooks()
 }
 
 // Display all books with name
-void Library::displayAllBooksName()
+void Library::displayAllBooksName(const string &filter)
 {
     if (books.empty())
     {
@@ -201,6 +221,27 @@ void Library::displayAllBooksName()
         return;
     }
 
+    if (filter == "t")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getTitle() < b->getTitle();
+             });
+    }
+    else if (filter == "a")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getAuthor() < b->getAuthor();
+             });
+    }
+    else
+    {
+        cout << "Filtre invalide. Utilisez 't' pour le titre "
+             << "ou 'a' pour l'auteur.\n";
+    }
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < books.size(); ++i)
     {
@@ -218,7 +259,7 @@ void Library::displayAllBooksName()
 }
 
 // Display available books
-void Library::displayAvailableBooks()
+void Library::displayAvailableBooks(const string &filter)
 {
     auto available = getAvailableBooks();
 
@@ -226,6 +267,28 @@ void Library::displayAvailableBooks()
     {
         cout << "Aucun livre disponible pour emprunt.\n";
         return;
+    }
+
+    if (filter == "t")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getTitle() < b->getTitle();
+             });
+    }
+    else if (filter == "a")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getAuthor() < b->getAuthor();
+             });
+    }
+    else
+    {
+        cout << "Filtre invalide. Utilisez 't' pour le titre "
+             << "ou 'a' pour l'auteur.\n";
     }
 
     cout << "\n=== LIVRES DISPONIBLES ===\n";
@@ -238,7 +301,7 @@ void Library::displayAvailableBooks()
 }
 
 // Display available books with name
-void Library::displayAvailableBooksName()
+void Library::displayAvailableBooksName(const string &filter)
 {
     auto available = getAvailableBooks();
 
@@ -248,6 +311,28 @@ void Library::displayAvailableBooksName()
         return;
     }
 
+    if (filter == "t")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getTitle() < b->getTitle();
+             });
+    }
+    else if (filter == "a")
+    {
+        sort(books.begin(), books.end(),
+             [](const auto &a, const auto &b)
+             {
+                 return a->getAuthor() < b->getAuthor();
+             });
+    }
+    else
+    {
+        cout << "Filtre invalide. Utilisez 't' pour le titre "
+             << "ou 'a' pour l'auteur.\n";
+    }
+    
     cout << "\n=== LIVRES DISPONIBLES ===\n";
     for (size_t i = 0; i < available.size(); ++i)
     {

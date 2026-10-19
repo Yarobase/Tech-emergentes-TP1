@@ -103,8 +103,9 @@ int main(int argc, char *argv[])
     int choice;
     bool running = true;
     string display;
+    string filter;
 
-    while (running)
+        while (running)
     {
         displayMenu();
 
@@ -213,17 +214,22 @@ int main(int argc, char *argv[])
         }
 
         case 5: // Display All Books
+            cout << "======================================================\n";
             cout << "i pour l'affichage avec ID \nn pour l'affichage avec nom\n";
             display = getInput("Entrez le mode d'affichage : ");
 
+            cout << "======================================================\n";
+            cout << "t pour l'affichage trier par titre \na pour l'affichage trier par auteur\n";
+            filter = getInput("Entrez le mode de filtrage : ");
+
             if (display == "i")
             {
-                library.displayAllBooks();
+                library.displayAllBooks(filter);
                 pauseForInput();
             }
             else if (display == "n")
             {
-                library.displayAllBooksName();
+                library.displayAllBooksName(filter);
                 pauseForInput();
             }
             else
@@ -235,16 +241,21 @@ int main(int argc, char *argv[])
             break;
 
         case 6: // Display Available Books
+            cout << "======================================================\n";
             cout << "i pour l'affichage avec ID \nn pour l'affichage avec nom\n";
             display = getInput("Entrez le mode d'affichage : ");
+
+            cout << "======================================================\n";
+            cout << "t pour l'affichage trier par titre \na pour l'affichage trier par auteur\n";
+            filter = getInput("Entrez le mode de filtrage : ");
             if (display == "i")
             {
-                library.displayAvailableBooks();
+                library.displayAvailableBooks(filter);
                 pauseForInput();
             }
             else if (display == "n")
             {
-                library.displayAvailableBooksName();
+                library.displayAvailableBooksName(filter);
                 pauseForInput();
             }
             else
