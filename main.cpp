@@ -165,6 +165,8 @@ int main(int argc, char *argv[])
                 pauseForInput();
                 break;
             }
+            pauseForInput();
+            break;
         }
 
         case 3:
@@ -214,11 +216,11 @@ int main(int argc, char *argv[])
         }
 
         case 5: // Display All Books
-            cout << "======================================================\n";
+            cout << "-----------------------------\n";
             cout << "i pour l'affichage avec ID \nn pour l'affichage avec nom\n";
             display = getInput("Entrez le mode d'affichage : ");
 
-            cout << "======================================================\n";
+            cout << "-----------------------------\n";
             cout << "t pour l'affichage trier par titre \na pour l'affichage trier par auteur\n";
             filter = getInput("Entrez le mode de filtrage : ");
 
@@ -313,6 +315,8 @@ int main(int argc, char *argv[])
                 pauseForInput();
                 break;
             }
+            pauseForInput();
+            break;
         }
 
         case 10:
@@ -336,6 +340,8 @@ int main(int argc, char *argv[])
                 pauseForInput();
                 break;
             }
+            pauseForInput();
+            break;
         }
 
         case 11:

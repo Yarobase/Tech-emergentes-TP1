@@ -332,7 +332,7 @@ void Library::displayAvailableBooksName(const string &filter)
         cout << "Filtre invalide. Utilisez 't' pour le titre "
              << "ou 'a' pour l'auteur.\n";
     }
-    
+
     cout << "\n=== LIVRES DISPONIBLES ===\n";
     for (size_t i = 0; i < available.size(); ++i)
     {
